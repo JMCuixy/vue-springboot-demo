@@ -1,0 +1,36 @@
+server:
+  port: 10880
+
+spring:
+  application:
+    name: vue-springboot-demo
+  datasource:
+    url: jdbc:mysql://${mysql.address}/${mysql.schema}?useSSL=false&useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&zeroDateTimeBehavior=convertToNull&serverTimezone=GMT%2b8
+    username: ${mysql.username}
+    password: ${mysql.password}
+    driverClassName: com.mysql.cj.jdbc.Driver
+    initialSize: 10
+    minIdle: 10
+    maxActive: 20
+    maxWait: 60
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 'x' FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxPoolPreparedStatementPerConnectionSize: 20
+    filters: stat
+
+management:
+  security:
+    enabled: false
+
+#Mybatis配置文件位置和命名规则，不建议修改，按照规则执行即可
+mybatis:
+  mapper-locations: classpath*:/mapper/**/*Mapper.xml
+  config-location: classpath:mybatis.xml
+
+
+
