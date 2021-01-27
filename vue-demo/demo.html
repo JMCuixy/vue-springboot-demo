@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+<div id="app">
+  {{ message }}
+</div>
+
+<div id="app2">
+  <!--v-bind attribute 被称为指令，指令带有前缀 v-，以表示它们是 Vue 提供的特殊 attribute。
+  此处该指令的意思是：将这个元素的 title attribute 和 Vue 实例的 message property 保持一致
+  -->
+  <span v-bind:title="message">
+        鼠标悬停几秒钟查看此处动态绑定的提示信息！
+    </span>
+</div>
+
+<div id="app3">
+  <p v-if="seen">现在你看到我了</p>
+</div>
+
+<div id="app4">
+  <ol>
+    <li v-for="todo in todos">
+      {{todo.text}}
+    </li>
+  </ol>
+</div>
+
+<div id="app5">
+  <p>{{message}}</p>
+  <button v-on:click="reverseMessage">反转信息</button>
+</div>
+
+<div id="app6">
+  <p>{{ message }}</p>
+  <input v-model="message">
+</div>
+</body>
+
+<script>
+  var app = new Vue({
+    el: '#app',
+    data: {
+      message: 'Hello Vue'
+    }
+  });
+
+  var app2 = new Vue({
+    el: "#app2",
+    data() {
+      return {
+        message: '页面加载于 ' + new Date().toLocaleString()
+      }
+    }
+  });
+
+  var app3 = new Vue({
+    el: '#app3',
+    data: {
+      seen: true
+    }
+  });
+
+  var app4 = new Vue({
+    el: "#app4",
+    data() {
+      return {
+        todos: [
+          {text: "vue"},
+          {text: "java"},
+          {text: "python"},
+        ]
+      }
+    }
+  });
+
+  var app5 = new Vue({
+    el: '#app5',
+    data: {
+      message: 'Hello Vue.js!'
+    },
+    methods: {
+      reverseMessage: function () {
+        this.message = this.message.split('').reverse().join('')
+      }
+    }
+  });
+
+  var app6 = new Vue({
+    el: '#app6',
+    data() {
+      return {
+        message: 'Hello Vue'
+      }
+    }
+  });
+</script>
+
+</html>
